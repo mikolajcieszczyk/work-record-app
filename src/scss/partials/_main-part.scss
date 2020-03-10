@@ -1,0 +1,24 @@
+main {
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-align-items: flex-end;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    height: 90%;
+    overflow: auto;
+    @include sans-serif($dark, 1em);
+}
+
+article {
+    .article-p {
+        text-align: center;
+    }
+}

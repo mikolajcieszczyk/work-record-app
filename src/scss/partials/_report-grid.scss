@@ -1,0 +1,17 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr 1fr 2fr;
+
+    border: 1px solid black;
+
+    text-align: left;
+    @include sans-serif($dark, 1em);
+
+    >div {
+        text-align: left;
+    }
+
+    .grid-item-title {
+        background: #fff;
+    }
+}

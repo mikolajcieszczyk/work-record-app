@@ -1,0 +1,97 @@
+.account-summary {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    background: #FA0863;
+}
+
+header {
+    display: flex;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    -o-flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
+    -ms-align-items: center;
+    align-items: center;
+
+    .fa-calendar-check-o {
+        color: #fff;
+        text-shadow: 2px 2px #000;
+    }
+
+    .fa-calendar-check-o:hover {
+        text-shadow: none;
+    }
+
+    .header__span {
+        @include serif($dark, 2em, 3px);
+        text-align: center;
+        text-shadow: 2px 2px #fff;
+    }
+
+    .header__span:hover {
+        text-shadow: none;
+    }
+}
+
+.navbar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    .navbar__link-toggle {
+        display: none;
+    }
+
+    .navbar__link-brand {
+        @include serif($dark, 20px, 3px);
+    }
+
+    .navbar__items {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .navbar__link--last {
+        margin-top: 5%;
+        color: red;
+    }
+
+    .navbar__link:hover {
+        opacity: 0.8;
+    }
+}
+
+
+
+
+

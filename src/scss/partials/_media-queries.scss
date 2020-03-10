@@ -1,0 +1,58 @@
+$breakpoint-smaller-devices: 767.98px;
+
+@media (max-width: $breakpoint-smaller-devices) {
+    .container {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        max-width: 90%;
+        min-height: 90%;
+
+        overflow: auto;
+    }
+
+    .navbar {
+        .navbar__link-brand {
+            display: none;
+        }
+
+        .navbar__items {
+            display: none;
+            text-align: center;
+            width: 100%;
+        }
+
+        .navbar__link-toggle {
+            -ms-flex-item-align: start;
+            align-self: flex-start;
+            display: initial;
+            position: relative;
+            left: 1%;
+            top: 1%;
+            cursor: pointer;
+        }
+
+        .navbar__toggleShow {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+    }
+
+    .popup__container--content {
+        width: 80%;
+    }
+
+    main {
+        height: 90%;
+
+        article {
+            min-height: 50vh;
+        }
+    }
+
+    footer {
+        height: 10%;
+    }
+}

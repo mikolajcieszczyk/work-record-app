@@ -1,0 +1,99 @@
+body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+
+    padding: 0;
+
+    @include links-colors ($white, $white, $green, $white);
+
+    background: -o-linear-gradient(135deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    -webkit-animation: background-gradient 120s ease infinite;
+    animation: background-gradient 120s ease infinite;
+    cursor: default;
+}
+
+@-webkit-keyframes background-gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes background-gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+* {
+    padding: 1%;
+}
+
+.container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+
+    width: 75%;
+    max-height: 95%;
+
+    overflow: auto;
+
+    padding: 0;
+
+    border: 1px solid black;
+
+    @include sans-serif($dark, 1em, 3px);
+}
+
+.col-left {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+
+    padding: 0;
+
+    background: #fff;
+}
+
+.col-right {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+    background: #EEEEECFF;
+}
+

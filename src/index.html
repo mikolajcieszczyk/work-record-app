@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Workhour record app</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="/Tooltip" type="text/javascript"></script>
+    <script src="/socket" type="text/javascript"></script>
+    <script src="/Main" type="text/javascript"></script>
+    <script src="/Net" type="text/javascript"></script>
+    <link rel="stylesheet" href="/styles">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body>
+    <div class="container">
+        <nav class="col-left">
+            <div class="account-summary">
+                <header>
+                    <i class="fa fa-calendar-check-o fa-4x"></i>
+                <span class="header__span">WORKHOUR RECORD-APP</span>
+                </header>
+            </div>
+            <div class="navbar">
+                <div class="navbar__link-toggle">
+                    <i class="fa fa-bars fa-2x"></i>
+                </div>
+                <div class="navbar__link-brand">
+                    MENU
+                </div>
+                <nav class="navbar__items">
+                    <div class="navbar__link popup bt-load-report" popup_id='1'>
+                        <i class="fa fa-download fa-2x"></i> <span class="navbar__span">Load report</span>
+                    </div>
+                    <div class="navbar__link popup" popup_id='2'>
+                        <i class="fa fa-plus fa-2x"></i> <span class="navbar__span">Add workhour</span>
+                    </div>
+                    <div class="navbar__link popup" popup_id='3'>
+                        <i class="fa fa-user-plus fa-2x"></i> <span class="navbar__span">Add client</span>
+                    </div>
+                    <div class="navbar__link popup" popup_id='4'>
+                        <i class="fa fa-pencil fa-2x"></i> <span class="navbar__span">Edit client</span>
+                    </div>
+                    <div class="navbar__link popup" popup_id='5'>
+                        <i class="fa fa-trash-o fa-2x"></i> <span class="navbar__span">Delete client</span>
+                    </div>
+                    <div class="navbar__link popup" popup_id='6'>
+                        <i class="fa fa-question fa-2x"></i> <span class="navbar__span">How to use</span>
+                    </div>
+                    <div class="navbar__link navbar__link--last">
+                        <i class="fa fa-power-off fa-2x"></i> <span class="navbar__span">Log out</span>
+                    </div>
+                </nav>
+            </div>
+        </nav>
+        <div class="col-right">
+            <main>
+                <article>
+
+                    <p class="article-p">Please select some report</p>
+                   <!-- report content here -->
+                </article>
+            </main>
+            <footer>
+                Footer
+            </footer>
+        </div>
+    </div>
+    <!-- popup login -->
+    <div class="popup__container">
+        <div class="popup__container--content login">
+            <h2>Please log-in:</h2>
+            <div class="login-form">
+                <form class="form__styles" action="#">
+                    <p>Username:</p>
+                    <input type="text" class="login" placeholder="username" title="Please insert valid login"></input>
+                    <p>Password:</p>
+                    <input type="password" class="password" placeholder="password" title="Please insert vaild password"></input>
+                    <p></p>
+                    <button class="login-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--popup Load report -->
+    <div class="popup__container">
+        <div class="popup__container--content select-report">
+            <span class="close">×</span>
+            <h2>Select a report</h2>
+            <form class="form__styles">
+                <select name="report" size="5" class="form__styles all-reports" required>
+                    <option value="report1">Report 1</option>
+                    <option value="report2">Report 2</option>
+                    <option value="report3">Report 3</option>
+                    <option value="report4">Report 4</option>
+                </select>
+                <br><br>
+                <input type="button" value="Select" class="select-report-button">
+            </form>
+        </div>
+    </div>
+    <!-- popup Add workhour -->
+    <div class="popup__container">
+        <div class="popup__container--content add-workhour">
+            <span class="close">×</span>
+            <h2>Add workhour</h2>
+            <form class="form__styles">
+                <p>Select date:</p>
+                <input type="date" required>
+                <p>Select client: </p>
+                <select class="clients" size="0" required>
+                </select>
+                <p>How many hours:</p>
+                <input type="number" class="hours-done" required>
+                <p>Hourly rate:</p>
+                <input type="number" class="hourly-rate" required>
+                <p>Additional note*:</p>
+                <input type="text" class="additional-note">
+                <p><input type="button" value="Add"> <input type="reset" value="Reset"></p>
+            </form>
+        </div>
+    </div>
+    <!-- popup Add client -->
+    <div class="popup__container">
+        <div class="popup__container--content add-client">
+            <span class="close">×</span>
+            <h2>Add new client to the database</h2>
+            <form class="form__styles">
+                <p>Name and surname:</p>
+                <input class="clients" name="clients" type="text" required>
+                <p>Predefined hourly rate:</p>
+                <input class="hourly-rate" type="number" required>
+                <p>Predefined additional note:</p>
+                <input class="additional-note" type="text" required>
+                <p><input type="button" value="Add"> <input type="reset" value="Reset"></p>
+            </form>
+        </div>
+    </div>
+    <!-- popup Edit client -->
+    <div class="popup__container">
+        <div class="popup__container--content edit-client">
+            <span class="close">×</span>
+            <h2>Edit client</h2>
+            <form class="form__styles">
+                <p>Select client to edit: </p>
+                <select class="clients" size="0" required>
+                </select>
+                <p>New name and surname:</p>
+                <input class="client-name" type="text">
+                <p>New predefined hourly rate:</p>
+                <input class="hourly-rate" type="number">
+                <p>New predefined additional note:</p>
+                <input class="additional-note" type="text">
+                <p><input type="button" value="Apply"> <input type="reset" value="Reset"></p>
+            </form>
+        </div>
+    </div>
+    <!-- popup Delete client -->
+    <div class="popup__container">
+        <div class="popup__container--content delete-client">
+            <span class="close">×</span>
+            <h2>Delete client</h2>
+            <form class="form__styles">
+                <p>Select client to delete from the database: </p>
+                <select class="clients" size="0" required>
+                </select>
+                <p style="color: red">Are you sure about that? <input class="checkbox" type="checkbox" required></p>
+                <p><input type="button" class="delete_button" value="Delete"></p>
+            </form>
+        </div>
+    </div>
+    <!-- popup How to use -->
+    <div class="popup__container">
+        <div class="popup__container--content">
+            <span class="close">×</span>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas ratione aspernatur eligendi repudiandae, quam
+                laudantium, nihil nostrum animi assumenda odio iure, reprehenderit vitae doloremque similique reiciendis
+                deleniti blanditiis rem excepturi?</p>
+        </div>
+    </div>
+</body>
+
+</html>

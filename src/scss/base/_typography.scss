@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Lilita+One|Raleway&display=swap');
+
+$ff-light: 'Raleway', sans-serif;
+$ff-strong: 'Lilita One', cursive;
+
+$fw-normal: 500;
+$fw-bold: 700;
+
+$fs-normal: 16px;
+$fs-big: 2em;
+
+@mixin serif($font-color, $font-size: 2em, $letter-spacing: normal) {
+    font-family: $ff-strong;
+    font-size: $font-size;
+    font-weight: $fw-bold;
+    color: $font-color;
+    letter-spacing: $letter-spacing;
+}
+
+@mixin sans-serif($font-color, $font-size: 16px, $letter-spacing: normal) {
+    font-family: $ff-light;
+    font-size: $font-size;
+    font-weight: $fw-bold;
+    color: $font-color;
+    letter-spacing: $letter-spacing;
+}
