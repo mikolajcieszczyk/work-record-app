@@ -15,6 +15,9 @@
     <script src="/Net" type="text/javascript"></script>
     <link rel="stylesheet" href="/styles">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 
 <body>
     <div class="container">
@@ -22,7 +25,7 @@
             <div class="account-summary">
                 <header>
                     <i class="fa fa-calendar-check-o fa-4x"></i>
-                <span class="header__span">WORKHOUR RECORD-APP</span>
+                    <span class="header__span">WORKHOUR RECORD-APP</span>
                 </header>
             </div>
             <div class="navbar">
@@ -51,22 +54,64 @@
                     <div class="navbar__link popup" popup_id='6'>
                         <i class="fa fa-question fa-2x"></i> <span class="navbar__span">How to use</span>
                     </div>
-                    <div class="navbar__link navbar__link--last">
+                    <div class="navbar__link navbar__link--last logOutBtn">
                         <i class="fa fa-power-off fa-2x"></i> <span class="navbar__span">Log out</span>
                     </div>
+
                 </nav>
             </div>
         </nav>
         <div class="col-right">
             <main>
-                <article>
+                <article class="pdfExport">
 
-                    <p class="article-p">Please select some report</p>
-                   <!-- report content here -->
+                    <p class="article-p">
+                        <div class="how-to-use-stuff">
+                            <h3 class="how-to-use-stuff__title"><span class="pink">Workhour Record App</span> the web
+                                application to save and count your e.g freelance earnings.</h3>
+
+                            <h3>How to use?</h3>
+
+                            <p><span class="pink">STEP 1. Add client</span>--> fill the form (hourly rate and additional
+                                note are not obligatory)</p>
+
+                            <p><span class="pink">STEP 2. Add workhour</span> --> fill the form.</p>
+
+                            <p><span class="pink">STEP 3. Load report</span>--> pick the right report and enjoy the
+                                view. Click the button below to download report at pdf
+                                format.</p>
+
+                            <p><span class="pink">Edit client, Delete client</span>--> u know what.</p>
+
+                            <h3 class="pink" style="text-align: center;">Motivation</h3>
+
+                            <p>Motivation to code that was my previous workplace (i was a tennis coach) where I had to
+                                do
+                                these reports manually... month by month.. It was annoying :)</p>
+
+                            <p>
+                                <h3 class="pink" style="text-align: center;">Technology stack</h3>
+                                <img src="https://cdn4.iconfinder.com/data/icons/iconsimple-programming/512/html-512.png"
+                                    style="width: 100px;">
+                                <img src="https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/css3-512.png"
+                                    style="width: 100px;">
+                                <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands-1/512/288_Sass_logo-512.png"
+                                    style="width: 100px;">
+                                <img src="https://img.icons8.com/color/144/000000/javascript.png"
+                                    style="width: 100px;" />
+                                <img src="https://cdn4.iconfinder.com/data/icons/scripting-and-programming-languages/512/JQuery_logo-512.png"
+                                    style="width: 100px;">
+                                <img src="https://img.icons8.com/color/240/000000/nodejs.png" style="width: 100px;" />
+                                <img src="https://img.icons8.com/color/240/000000/mongodb.png" style="width: 100px;" />
+                            </p>
+                        </div>
+                    </p>
+                    <!-- report content here -->
                 </article>
+                <button class="pdfExportBtn"><b>PDF Export</b></button>
             </main>
-            <footer>
-                Footer
+            <footer style="text-align: center;">
+                Copyright &copy; Mikołaj Cięszczyk (front-end) Michał Grabowski (back-end), 2020
             </footer>
         </div>
     </div>
@@ -76,10 +121,11 @@
             <h2>Please log-in:</h2>
             <div class="login-form">
                 <form class="form__styles" action="#">
-                    <p>Username:</p>
+                    <p>Username: admin</p>
                     <input type="text" class="login" placeholder="username" title="Please insert valid login"></input>
-                    <p>Password:</p>
-                    <input type="password" class="password" placeholder="password" title="Please insert vaild password"></input>
+                    <p>Password: admin</p>
+                    <input type="password" class="password" placeholder="password"
+                        title="Please insert vaild password"></input>
                     <p></p>
                     <button class="login-btn">Submit</button>
                 </form>
@@ -177,9 +223,12 @@
     <div class="popup__container">
         <div class="popup__container--content">
             <span class="close">×</span>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas ratione aspernatur eligendi repudiandae, quam
-                laudantium, nihil nostrum animi assumenda odio iure, reprehenderit vitae doloremque similique reiciendis
-                deleniti blanditiis rem excepturi?</p>
+            <p>
+                Consequat irure reprehenderit occaecat adipisicing ullamco veniam velit. Non Lorem aliquip aliqua in
+                cillum anim minim consectetur Lorem ex in enim. Ea qui do voluptate eu laboris consectetur ad aute. Anim
+                in commodo exercitation exercitation ad enim culpa anim aliquip duis aliqua eu exercitation occaecat.
+                Pariatur ipsum et ea aute.
+            </p>
         </div>
     </div>
 </body>

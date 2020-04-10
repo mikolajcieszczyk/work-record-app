@@ -105,7 +105,7 @@ io.sockets.on("connection", function(client){
 
     client.on("load-report", function(data) {
         var date = data.report.split("-");
-        var month = parseInt(date[0]);
+        var month = parseInt(date[0])-1;
         var year = parseInt(date[1]);
         opers.SelectByMonthAndYear(Models.Hour, month, year, data.username, function(records){
             client.emit("send-loaded-report",{ data: records.data });
@@ -116,6 +116,7 @@ io.sockets.on("connection", function(client){
         var record = Models.Hour({
             date: data.date,
             client: data.clients,
+            clientName: data.clientName,
             hours: data.hoursDone,
             rate: data.hourlyRate,
             note: data.additionalNote,

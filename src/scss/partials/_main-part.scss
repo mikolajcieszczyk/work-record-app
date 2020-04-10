@@ -22,3 +22,21 @@ article {
         text-align: center;
     }
 }
+
+.how-to-use-stuff {
+    
+    .how-to-use-stuff__title {
+        text-align: center;
+        font-size: 2em;
+    }
+
+    p, h3 {
+        margin: 0;
+    }
+
+
+    .pink {
+        display: block;
+        color: #DD4182;
+    }
+}

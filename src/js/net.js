@@ -1,24 +1,23 @@
 var client;
 var username = "";
+var userData = {};
 var workhours = [];
 var clients = [];
 
 
-$(document).ready(function() {
+$(document).ready(function () {
     client = io();
 
     var passwordTooltip = new Tooltip($(".password"));
     var usernameTooltip = new Tooltip($(".login"));
 
-    client.on("sending_data_back", function(data) {
+    client.on("sending_data_back", function (data) {
         console.log(data);
         if (data.which == "workhours") {
             workhours = data.hours.data;
         } else {
             workhours = data.hours.data;
             clients = data.clients.data;
-
-            // $("article").html("");
 
             for (var i = 0; i < clients.length; i++) {
                 var element = clients[i];
@@ -29,7 +28,7 @@ $(document).ready(function() {
         }
     })
 
-    client.on("logged", function(data) {
+    client.on("logged", function (data) {
         console.log(data.logged)
         if (data.logged == "success") {
             username = $('.login-form .login').val();
@@ -50,7 +49,7 @@ $(document).ready(function() {
         }
     })
 
-    $(".select-report input[type=button]").on("click", function() {
+    $(".select-report input[type=button]").on("click", function () {
         var report = $(".select-report select[name=report] option:selected").val();
         console.log(report)
 
@@ -60,60 +59,64 @@ $(document).ready(function() {
         })
     })
 
-    client.on("send-loaded-report", function(data) {
+    client.on("send-loaded-report", function (data) {
         var tempWorkhours = data.data;
         console.log(tempWorkhours)
 
+        var report = $(".select-report select[name=report] option:selected").val();
+
+        var sumOfMoney = 0;
+
         $(".container main article").html('');
 
+        $(".container main article").append('<h2 class="content">Name: ' + username + '</h2><h2 class="content">Report: ' + report + '</h2>');
+
+        $(".container main article").append('<div class="grid-container grid-item-title"><div class="grid-item">No.</div><div class="grid-item">Name</div><div class="grid-item">Hours</div><div class="grid-item">Rate</div><div class="grid-item">Note</div></div>');
+
+
         for (var i = 0; i < tempWorkhours.length; i++) {
-            var nameIndex = clients.findIndex(function(a) { return a._id == tempWorkhours[i].client; });
-            console.log(nameIndex)
-            var name = clients[nameIndex].client;
-            var report = $(".select-report select[name=report] option:selected").val();
-            // var span = $("<span>").html(name + " - " + tempWorkhours[i].hours + " - " + tempWorkhours[i].rate + " - " + tempWorkhours[i].note);
+            console.log(tempWorkhours[i].rate)
 
-                $(".container main article").append('<h2 class="content">Name: ' + username + '</h2><h2 class="content">Report: ' + report + '</h2>');
+            sumOfMoney += parseFloat(tempWorkhours[i].rate);
 
-                $(".container main article").append( '<div class="grid-container grid-item-title"><div class="grid-item">No.</div><div class="grid-item">Name</div><div class="grid-item">Hours</div><div class="grid-item">Rate</div><div class="grid-item">Note</div></div>');
+            $(".container main article").append('<div class="grid-container"><div class="grid-item">' + [i + 1] + '</div><div class="grid-item">' + tempWorkhours[i].clientName + '</div><div class="grid-item">' + tempWorkhours[i].hours + '</div><div class="grid-item">' + tempWorkhours[i].rate + '</div><div class="grid-item">' + tempWorkhours[i].note + '</div></div>');
 
-                 for(i=0; i<tempWorkhours.length; i++) { 
-                    $(".container main article").append( '<div class="grid-container"><div class="grid-item">' + [i+1] + '</div><div class="grid-item">' + name + '</div><div class="grid-item">' + tempWorkhours[i].hours + '</div><div class="grid-item">' + tempWorkhours[i].rate + '</div><div class="grid-item">' + tempWorkhours[i].note + '</div></div>');
+            var x = (tempWorkhours[i].rate + i);
 
-                    var x = (tempWorkhours[i].rate + i);
-
-                    console.log(x);
-                }
-
-                $(".container main article").append('<h3>Summary: </h3><h4>Hours: ' + tempWorkhours.length + '</h4><h4>Money:' + tempWorkhours.rate + '</h4>');
-
-                // $(".container main article").after("lala");
-
-            // console.log(span)
-            // $(".container main article").append(span);
+            console.log(x);
         }
+
+        $(".container main article").append('<h3>Summary: </h3><h4>Hours: ' + tempWorkhours.length + '</h4><h4>Money:' + sumOfMoney + '</h4>');
 
     });
 
-    $(".add-workhour input[type=button]").on("click", function() {
+    $(".add-workhour input[type=button]").on("click", function () {
         var date = $(".add-workhour input[type=date]").val();
         var clients = $(".clients").val();
+        var clientName = $(".clients option:selected").html();
         var hoursDone = $(".hours-done").val();
         var hourlyRate = $(".hourly-rate").val();
         var additionalNote = $(".additional-note").val();
 
-        client.emit("add_workhour", {
+        var obj = {
             date: date,
             clients: clients,
+            clientName: clientName,
             hoursDone: hoursDone,
             hourlyRate: hourlyRate,
             additionalNote: additionalNote,
             belongsTo: username,
-        })
+        }
+
+        console.log(obj)
+
+        client.emit("add_workhour", obj)
         client.emit("get_data", { username: username, which: "workhours" });
+
+
     })
 
-    $(".add-client input[type=button]").on("click", function() {
+    $(".add-client input[type=button]").on("click", function () {
         var clients = $(".add-client .clients").val();
         var hourlyRate = $(".add-client .hourly-rate").val();
         var additionalNote = $(".add-client .additional-note").val();
@@ -130,7 +133,7 @@ $(document).ready(function() {
     function nameChange() {
         var client_id = $(".edit-client .clients option:selected").val();
 
-        var found = clients.find(function(element) {
+        var found = clients.find(function (element) {
             return client_id == element._id;
         })
 
@@ -142,7 +145,7 @@ $(document).ready(function() {
     $(".popup__edit-client").on("click", nameChange)
     $(".edit-client select.clients").on("change", nameChange)
 
-    $(".edit-client input[type=button]").on("click", function() {
+    $(".edit-client input[type=button]").on("click", function () {
         var client_id = $(".edit-client .clients option:selected").val();
         var clients = $(".edit-client .client-name").val();
         var hourlyRate = $(".edit-client .hourly-rate").val();
@@ -157,7 +160,7 @@ $(document).ready(function() {
         client.emit("get_data", { username: username });
     })
 
-    $(".delete-client input[type=button]").on("click", function() {
+    $(".delete-client input[type=button]").on("click", function () {
         var _id = $(".delete-client .clients option:selected").val();
         var checkbox = $(".checkbox").prop("checked");
 
@@ -167,7 +170,7 @@ $(document).ready(function() {
         })
     })
 
-    client.on("sending-info-about-deleting", function(data) {
+    client.on("sending-info-about-deleting", function (data) {
         if (data.deleted == true) {
             client.emit("get_data", { username: username });
         } else if (data.deleted == false) {
@@ -177,7 +180,7 @@ $(document).ready(function() {
         }
     })
 
-    $('.login-form .login-btn').on("click", function() {
+    $('.login-form .login-btn').on("click", function () {
         $('.login-form .login').removeClass('something_goes_wrong');
         $('.login-form .password').removeClass('something_goes_wrong');
 

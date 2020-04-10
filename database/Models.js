@@ -5,6 +5,7 @@ module.exports = function (mongoose) {
         {
             date: { type: Date, required: true },
             client: { type: String, required: true },
+            clientName: { type: String, required: true },
             hours: { type: Number, required: true },
             rate: { type: Number, required: true },
             note: { type: String, required: false },
@@ -24,15 +25,10 @@ module.exports = function (mongoose) {
         belongsTo: { type: String, required: true }
     })
 
-
-
-
-
     var models = {
         Hour: mongoose.model("Hour", hourSchema),
         Client: mongoose.model("Client", clientSchema),
         User: mongoose.model("User", userSchema),
-        // tdodaje tak jakw yzejj
     }
 
     return models;
