@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "compile-sass": "^1.0.4",
+    "compile-sass": "^1.0.5",
     "express": "^4.17.1",
     "mongoose": "^5.8.11",
     "node-sass": "^4.13.1",
