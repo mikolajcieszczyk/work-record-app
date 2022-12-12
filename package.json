@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "compile-sass": "^1.0.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mongoose": "^5.8.11",
     "node-sass": "^4.13.1",
     "socket.io": "^2.3.0"
